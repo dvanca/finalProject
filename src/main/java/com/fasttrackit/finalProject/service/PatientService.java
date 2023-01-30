@@ -5,6 +5,7 @@ import com.fasttrackit.finalProject.model.Appointment;
 import com.fasttrackit.finalProject.model.Patient;
 import com.fasttrackit.finalProject.repository.AppointmentRepository;
 import com.fasttrackit.finalProject.repository.PatientRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class PatientService {
     public Patient add(Patient newPatient) {
         return this.patientRepository.save(newPatient);
     }
+
+    public List<Patient> findBySearchString(String searchString) {
+        return patientRepository.findBySearchString(searchString);
+    }
+
 
     public List<Patient> getAll() {
         return patientRepository.findAll();

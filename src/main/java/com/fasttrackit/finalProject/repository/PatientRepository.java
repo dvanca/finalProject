@@ -8,4 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PatientRepository extends JpaRepository<Patient, Long>{}
+public interface PatientRepository extends JpaRepository<Patient, Long>{
+
+    @Query("select p from Patient p where concat(trim(p.lastName), trim(p.firstName)) like %:searchString%")
+    List<Patient> findBySearchString(@Param("searchString") String searchString);
+
+}
+
+

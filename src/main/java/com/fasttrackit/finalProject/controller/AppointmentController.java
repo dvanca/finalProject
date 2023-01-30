@@ -1,6 +1,7 @@
 package com.fasttrackit.finalProject.controller;
 
 import com.fasttrackit.finalProject.model.Appointment;
+import com.fasttrackit.finalProject.model.AppointmentType;
 import com.fasttrackit.finalProject.model.Patient;
 import com.fasttrackit.finalProject.service.AppointmentService;
 import com.fasttrackit.finalProject.service.PatientService;
@@ -25,6 +26,11 @@ public class AppointmentController {
         } else {
             return appointmentService.getAllAppointments();
         }
+    }
+    @GetMapping("types")
+    public List<AppointmentType> getTypes() {
+        System.out.println("Requested all appointment types");
+        return appointmentService.getAllAppointmentTypes();
     }
 
     @PostMapping("add")

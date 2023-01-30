@@ -1,5 +1,7 @@
 package com.fasttrackit.finalProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.Objects;
 public class Patient {
     @Id
     @GeneratedValue
+    @Column
     private long id;
     @Column
     private String firstName;
@@ -24,6 +27,7 @@ public class Patient {
     @Column
     private int age;
 
+    @JsonIgnoreProperties("patient")
     @OneToMany(mappedBy = "patient", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
