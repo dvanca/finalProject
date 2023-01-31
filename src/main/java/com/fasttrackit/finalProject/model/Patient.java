@@ -27,6 +27,13 @@ public class Patient {
     @Column
     private int age;
 
+    @Column
+    private String occupation;
+
+    @Column
+    private String allergies;
+
+
     @JsonIgnoreProperties("patient")
     @OneToMany(mappedBy = "patient", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Appointment> appointments;

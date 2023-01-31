@@ -1,5 +1,6 @@
 package com.fasttrackit.finalProject.controller;
 
+import com.fasttrackit.finalProject.exception.ResourceNotFoundException;
 import com.fasttrackit.finalProject.model.Appointment;
 import com.fasttrackit.finalProject.model.AppointmentType;
 import com.fasttrackit.finalProject.model.Patient;
@@ -27,6 +28,13 @@ public class AppointmentController {
             return appointmentService.getAllAppointments();
         }
     }
+
+    @GetMapping("{id}")
+    public Appointment getById(@PathVariable int id) {
+        Appointment appointment = appointmentService.getById(id);
+        return appointment;
+    }
+
     @GetMapping("types")
     public List<AppointmentType> getTypes() {
         System.out.println("Requested all appointment types");
@@ -46,5 +54,13 @@ public class AppointmentController {
     @PutMapping("{id}")
     public Appointment update(@PathVariable int id, @RequestBody Appointment appointment) {
         return appointmentService.update(id, appointment);
+    }
+
+
+    @DeleteMapping("{id}")
+    public Appointment deleteById(@PathVariable int id) {
+        Appointment appointmentToBeDeleted = getById(id);
+        appointmentService.deleteById(id);
+        return appointmentToBeDeleted;
     }
 }

@@ -24,6 +24,12 @@ public class AppointmentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Appointment missing", id));
     }
 
+    public Appointment deleteById(int id) {
+        Appointment appointmentToBeDeleted = getById(id);
+        appointmentRepository.deleteById((long) id);
+        return appointmentToBeDeleted;
+    }
+
     public List<Appointment> getAllByQuery(String name) {
         return appointmentRepository.findByQuery(name);
     }

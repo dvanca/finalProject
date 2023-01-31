@@ -38,6 +38,11 @@ public class PatientController {
         return this.patientService.add(patient);
     }
 
+    @PutMapping("{id}")
+    public Patient update(@PathVariable int id, @RequestBody Patient patient) {
+        return patientService.update(id, patient);
+    }
+
 
     }
 
